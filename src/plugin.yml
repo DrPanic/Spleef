@@ -1,0 +1,8 @@
+name: Spleef
+version: 1.4.1
+author: Naruse
+main: fr.naruse.spleef.main.Main
+softdepend: [Vault]
+commands:
+  spleef:
+    description: All commands for Spleef
