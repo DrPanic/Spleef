@@ -423,6 +423,16 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
                     pl.saveConfig();
                     return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+ Message.LOCATION_SAVED.getMessage());
                 }
+                if(args[1].equalsIgnoreCase("lobby")){
+                    pl.getConfig().set("spleef."+place+".lobby.x", p.getLocation().getX());
+                    pl.getConfig().set("spleef."+place+".lobby.y", p.getLocation().getY());
+                    pl.getConfig().set("spleef."+place+".lobby.z", p.getLocation().getZ());
+                    pl.getConfig().set("spleef."+place+".lobby.yaw", p.getLocation().getYaw());
+                    pl.getConfig().set("spleef."+place+".lobby.pitch", p.getLocation().getPitch());
+                    pl.getConfig().set("spleef."+place+".lobby.world", p.getLocation().getWorld().getName());
+                    pl.saveConfig();
+                    return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+ Message.LOCATION_SAVED.getMessage());
+                }
             }
             if(args[0].equalsIgnoreCase("open")){
                 if(!hasPermission(p,"spleef.open")){
@@ -608,7 +618,7 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
             sendMessage(sender, "§3Hey! §6/§cspleef <Create, Delete> <Spleef name> <[Game Mode]>");
             sendMessage(sender, "§3Hey! §6/§cspleef reload");
             sendMessage(sender, "§3Hey! §6/§cspleef set <Min, Max> <Spleef name> <Number>");
-            sendMessage(sender, "§3Hey! §6/§cspleef set <Arena, Spawn> <Spleef name> §7(Location)");
+            sendMessage(sender, "§3Hey! §6/§cspleef set <Arena, Spawn, [Lobby]> <Spleef name> §7(Location)");
             sendMessage(sender, "§3Hey! §6/§cspleef <Open, Close> <Spleef name>");
             sendMessage(sender, "§3Hey! §6/§cspleef set lang <French, English, Custom, Spanish>");
             sendMessage(sender, "§3Hey! §6/§cspleef list");

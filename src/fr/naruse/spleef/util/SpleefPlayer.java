@@ -11,6 +11,7 @@ public class SpleefPlayer {
     private Player p;
     private Main pl;
     private GameMode gameMode;
+    private boolean isFlying = false;
     public SpleefPlayer(Main pl, Player p){
         this.pl = pl;
         this.p = p;
@@ -48,5 +49,13 @@ public class SpleefPlayer {
         if(gameMode != null){
             p.setGameMode(gameMode);
         }
+    }
+
+    public void setIsFlying(){
+        p.setFlying(isFlying);
+    }
+
+    public void registerIsFlying(){
+        this.isFlying = p.isFlying();
     }
 }

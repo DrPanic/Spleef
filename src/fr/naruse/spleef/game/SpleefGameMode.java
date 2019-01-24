@@ -5,6 +5,7 @@ public enum SpleefGameMode {
     NORMAL("Normal"),
     DUEL("Duel"),
     TWO_TEAM("Team"),
+    SPLEGG("Splegg"),
     ;
     private String name;
     SpleefGameMode(String team) {

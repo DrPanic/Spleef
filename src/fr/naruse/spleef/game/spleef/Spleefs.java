@@ -41,6 +41,12 @@ public class Spleefs {
                                         Location spleefSpawn = new Location(wSpawn, pl.getConfig().getDouble("spleef."+i+".spawn.x"),
                                                 pl.getConfig().getDouble("spleef."+i+".spawn.y"), pl.getConfig().getDouble("spleef."+i+".spawn.z"),
                                                 pl.getConfig().getInt("spleef."+i+".spawn.yaw"), pl.getConfig().getInt("spleef."+i+".spawn.pitch"));
+                                        Location spleefLobby = null;
+                                        if(pl.getConfig().getString("spleef."+i+".lobby") != null){
+                                            spleefLobby = new Location(wSpawn, pl.getConfig().getDouble("spleef."+i+".lobby.x"),
+                                                    pl.getConfig().getDouble("spleef."+i+".lobby.y"), pl.getConfig().getDouble("spleef."+i+".lobby.z"),
+                                                    pl.getConfig().getInt("spleef."+i+".lobby.yaw"), pl.getConfig().getInt("spleef."+i+".lobby.pitch"));
+                                        }
                                         Location a = null, b = null;
                                         if(pl.getConfig().getString("spleef."+i+".region.a.x") != null && pl.getConfig().getString("spleef."+i+".region.b.x") != null){
                                             a = new Location(Bukkit.getWorld(pl.getConfig().getString("spleef."+i+".region.a.world")),
@@ -64,15 +70,19 @@ public class Spleefs {
                                         Spleef spleef = null;
                                         switch (gameMode){
                                             case NORMAL:{
-                                                spleef = new SpleefNormal(pl, name, spleefLoc, spleefSpawn, min, max, isOpen).buildRegion(a, b);
+                                                spleef = new NormalSpleef(pl, name, spleefLoc, spleefSpawn, spleefLobby, min, max, isOpen).buildRegion(a, b);
                                                 break;
                                             }
                                             case DUEL:{
-                                                spleef = new SpleefDuel(pl, name, spleefLoc, spleefSpawn, min, max, isOpen).buildRegion(a, b);
+                                                spleef = new DuelSpleef(pl, name, spleefLoc, spleefSpawn, spleefLobby, min, max, isOpen).buildRegion(a, b);
                                                 break;
                                             }
                                             case TWO_TEAM:{
-                                                spleef = new SpleefTwoTeam(pl, name, spleefLoc, spleefSpawn, min, max, isOpen).buildRegion(a, b);
+                                                spleef = new TwoTeamSpleef(pl, name, spleefLoc, spleefSpawn, spleefLobby, min, max, isOpen).buildRegion(a, b);
+                                                break;
+                                            }
+                                            case SPLEGG:{
+                                                spleef = new SpleegSpleef(pl, name, spleefLoc, spleefSpawn, spleefLobby, min, max, isOpen).buildRegion(a, b);
                                                 break;
                                             }
                                         }
@@ -124,6 +134,7 @@ public class Spleefs {
             SpleefPlayer spleefPlayer = new SpleefPlayer(pl, p);
             spleefPlayer.registerInventory();
             spleefPlayer.registerGameMode();
+            spleefPlayer.registerIsFlying();
             spleefPlayerOfPlayer.put(p, spleefPlayer);
             if(spleef.addPlayer(p)){
                 spleefOfPlayer.put(p, spleef);
@@ -136,13 +147,18 @@ public class Spleefs {
 
     public boolean removePlayer(Player p){
         if(spleefOfPlayer.containsKey(p)){
-            spleefOfPlayer.get(p).removePlayer(p);
+            try{
+                spleefOfPlayer.get(p).removePlayer(p);
+            }catch (Exception e){
+                p.teleport(spleefOfPlayer.get(p).getSpleefSpawn());
+            }
             spleefOfPlayer.remove(p);
             p.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
             if(spleefPlayerOfPlayer.containsKey(p)){
                 SpleefPlayer spleefPlayer = spleefPlayerOfPlayer.get(p);
                 spleefPlayer.setPlayerInventory();
                 spleefPlayer.setPlayerGameMode();
+                spleefPlayer.setIsFlying();
             }
             p.setFireTicks(0);
             return true;
@@ -168,7 +184,7 @@ public class Spleefs {
 
     public void onDisable() {
         for(Spleef spleef : getSpleefs()){
-            spleef.onDisable();
+            spleef.onDisable(true);
         }
     }
 }

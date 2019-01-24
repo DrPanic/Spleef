@@ -34,7 +34,7 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
     private String NAME;
     private String name;
     private boolean isOpen;
-    private Location spleefLoc, spleefSpawn, a, b;
+    private Location spleefLoc, spleefSpawn, spleefLobby, a, b;
     private int min, max;
     private int startTimer = 0;
     private List<Sign> signs = Lists.newArrayList();
@@ -45,12 +45,13 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
     private Game game;
     private ScoreboardSign scoreboardSign;
     private SpleefGameMode gameMode;
-    public Spleef(Main pl, SpleefGameMode gameMode, String name, Location spleefLoc, Location spleefSpawn, int min, int max, boolean isOpen){
+    public Spleef(Main pl, SpleefGameMode gameMode, String name, Location spleefLoc, Location spleefSpawn, Location spleefLobby, int min, int max, boolean isOpen){
         this.pl = pl;
         this.gameMode = gameMode;
         this.name = name;
         this.spleefLoc = spleefLoc;
         this.spleefSpawn = spleefSpawn;
+        this.spleefLobby = spleefLobby;
         this.min = min;
         this.max = max;
         this.isOpen = isOpen;
@@ -162,6 +163,12 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
         }
     }
 
+    public void runNormalJoin(Player p){
+        if(spleefLobby != null){
+            p.teleport(spleefLobby);
+        }
+    }
+
     public void runNormalStart(){
         sendMessage(NAME+" §a"+Message.GAME_START.getMessage());
         game.WAIT = false;
@@ -213,6 +220,23 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
                         p.setFoodLevel(20);
                     }
                 },40);
+                Bukkit.getScheduler().scheduleSyncDelayedTask(getMain(), new Runnable() {
+                    @Override
+                    public void run() {
+                        if(getGame().GAME){
+                            getMain().wagers.loseWager(p);
+                        }else{
+                            if(getMain().wagers.hasWager(p)){
+                                Player player = getMain().wagers.getWagerOfPlayer().get(p).getOtherPlayer(p);
+                                if(!getPlayerInGame().contains(player)){
+                                    return;
+                                }
+                                sendMessage(getNAME()+" §6"+player.getName()+"§c "+ Message.LEAVED_THE_GAME.getMessage());
+                                getMain().spleefs.removePlayer(player);
+                            }
+                        }
+                    }
+                },20);
             }
         }
         blocksOfRegionVerif.clear();
@@ -279,8 +303,8 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
         updateSigns();
     }
 
-    public void onDisable() {
-        restart(true);
+    public void onDisable(boolean notOnDisable) {
+        restart(notOnDisable);
         for(Sign sign : signs){
             sign.setLine(0, NAME);
             sign.setLine(1, "");
@@ -398,6 +422,10 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
         if(e.getBlock() == null){
             return;
         }
+        if(gameMode == SpleefGameMode.SPLEGG){
+            e.setCancelled(true);
+            return;
+        }
         if(blocksOfRegionVerif.contains(e.getBlock())){
             if(!playerInGame.contains(p)){
                 e.setCancelled(true);
@@ -444,6 +472,10 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
         }
         if(e.getItem().getType() != Material.GOLD_SPADE){
             e.setCancelled(true);
+        }
+        if(e.getItem().getType() == Material.EGG){
+            p.getInventory().addItem(new ItemStack(Material.EGG, 16));
+            e.setCancelled(false);
         }
     }
 
@@ -544,6 +576,10 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
 
     public SpleefGameMode getGameMode() {
         return gameMode;
+    }
+
+    public Location getSpleefLobby() {
+        return spleefLobby;
     }
 
     public class Game{
