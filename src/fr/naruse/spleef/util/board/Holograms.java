@@ -3,21 +3,28 @@ package fr.naruse.spleef.util.board;
 import com.google.common.collect.Lists;
 import fr.naruse.spleef.main.Main;
 import fr.naruse.spleef.util.Message;
+import fr.naruse.spleef.util.Reflections;
 import fr.naruse.spleef.util.SpleefPlayerStatistics;
 import net.minecraft.server.v1_12_R1.EntityArmorStand;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftArmorStand;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.EntityType;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class Holograms extends BukkitRunnable {
+public class Holograms extends BukkitRunnable implements Listener {
     private Main pl;
     private List<ArmorStand> entities = Lists.newArrayList();
     private ArmorStand[] armorStands;
@@ -37,14 +44,23 @@ public class Holograms extends BukkitRunnable {
         if(location == null){
             return;
         }
+        Bukkit.getPluginManager().registerEvents(this, pl);
         for(int i = 0; i != 11; i++){
             ArmorStand armorStand = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
-            EntityArmorStand ars = ((CraftArmorStand) armorStand).getHandle();
-            ars.setInvisible(true);
-            ars.setNoGravity(true);
-            ars.setCustomNameVisible(false);
-            ars.setCustomName("§a");
-            ars.setInvulnerable(true);
+            try {
+                Reflections.setNoGravity(armorStand, true);
+                Reflections.setInvisible(armorStand, true);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            armorStand.setCustomNameVisible(false);
+            armorStand.setCustomName("§a");
             entities.add(armorStand);
             location.add(0, 0.3, 0);
         }
@@ -146,6 +162,13 @@ public class Holograms extends BukkitRunnable {
             if(getSpleefPlayer(p).getWins() != 0){
                 addPlayerPoints(p, getSpleefPlayer(p).getWins());
             }
+        }
+    }
+
+    @EventHandler
+    public void damage(EntityDamageEvent e){
+        if(entities.contains(e.getEntity())){
+            e.setCancelled(true);
         }
     }
 
