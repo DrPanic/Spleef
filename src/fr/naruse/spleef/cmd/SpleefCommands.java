@@ -7,6 +7,7 @@ import fr.naruse.spleef.main.Main;
 import fr.naruse.spleef.game.SpleefGameMode;
 import fr.naruse.spleef.game.spleef.Spleef;
 import fr.naruse.spleef.util.Message;
+import fr.naruse.spleef.util.board.Holograms;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
@@ -226,6 +227,26 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
                 }
                 if(args.length < 2){
                    return help(sender, 1);
+                }
+                if(args[1].equalsIgnoreCase("holograms")){
+                    if(args.length < 3){
+                        return help(sender, 3);
+                    }
+                    if(args[2].equalsIgnoreCase("location")){
+                        pl.getConfig().set("holograms.location.x", p.getLocation().getX());
+                        pl.getConfig().set("holograms.location.y", p.getLocation().getY());
+                        pl.getConfig().set("holograms.location.z", p.getLocation().getZ());
+                        pl.getConfig().set("holograms.location.world", p.getLocation().getWorld().getName());
+                        pl.saveConfig();
+                        pl.holograms = new Holograms(pl);
+                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+ Message.LOCATION_SAVED.getMessage());
+                    }
+                    if(args[2].equalsIgnoreCase("enable")){
+                        pl.getConfig().set("holograms.enable", !pl.getConfig().getBoolean("holograms.enable"));
+                        pl.saveConfig();
+                        pl.holograms = new Holograms(pl);
+                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+ Message.SETTING_SAVED.getMessage());
+                    }
                 }
                 if(args[1].equalsIgnoreCase("glowing")){
                     pl.getConfig().set("gameMode.team.glowing", !pl.getConfig().getBoolean("gameMode.team.glowing"));
@@ -570,6 +591,17 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
                         return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.DONE.getMessage()+" §7(SnowBalls: true)");
                     }
                 }
+                if(args[1].equalsIgnoreCase("broadcast")){
+                    if(pl.getConfig().getBoolean("allow.broadcast")){
+                        pl.getConfig().set("allow.broadcast", false);
+                        pl.saveConfig();
+                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.DONE.getMessage()+" §7(Broadcast: false)");
+                    }else{
+                        pl.getConfig().set("allow.broadcast", true);
+                        pl.saveConfig();
+                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.DONE.getMessage()+" §7(Broadcast: true)");
+                    }
+                }
             }
             if(args[0].equalsIgnoreCase("remove")){
                 if(args.length < 3){
@@ -621,22 +653,23 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
             sendMessage(sender, "§3Hey! §6/§cspleef set <Arena, Spawn, [Lobby]> <Spleef name> §7(Location)");
             sendMessage(sender, "§3Hey! §6/§cspleef <Open, Close> <Spleef name>");
             sendMessage(sender, "§3Hey! §6/§cspleef set lang <French, English, Custom, Spanish>");
-            sendMessage(sender, "§3Hey! §6/§cspleef list");
             sendMessage(sender, "§bPage: §21/3");
         }else if(page == 2){
             sendMessage(sender, Message.SPLEEF.getMessage()+"§2 ----------------- "+Message.SPLEEF.getMessage());
+            sendMessage(sender, "§3Hey! §6/§cspleef list");
             sendMessage(sender, "§3Hey! §6/§cspleef force <Start, Stop> <Spleef name>");
-            sendMessage(sender, "§3Hey! §6/§cspleef allow <SnowBalls>");
+            sendMessage(sender, "§3Hey! §6/§cspleef allow <SnowBalls, Broadcast>");
             sendMessage(sender, "§3Hey! §6/§cspleef set time <Wait> <Number>");
             sendMessage(sender, "§3Hey! §6/§cspleef set region <Spleef name>");
             sendMessage(sender, "§3Hey! §6/§cspleef set regionWithPos <Spleef name> <Pos1, Pos2>");
             sendMessage(sender, "§3Hey! §6/§cspleef remove region <Spleef name>");
             sendMessage(sender, "§3Hey! §6/§cspleef set rewards <Win, Lose> <Number>");
-            sendMessage(sender, "§3Hey! §6/§cspleef set gameMode <Spleef name> <Game Mode>");
             sendMessage(sender, "§bPage: §22/3");
         }else if(page == 3){
             sendMessage(sender, Message.SPLEEF.getMessage()+"§2 ----------------- "+Message.SPLEEF.getMessage());
+            sendMessage(sender, "§3Hey! §6/§cspleef set gameMode <Spleef name> <Game Mode>");
             sendMessage(sender, "§3Hey! §6/§cspleef set glowing §7(Make players glowing in team mode)");
+            sendMessage(sender, "§3Hey! §6/§cspleef set holograms <Location, Enable>");
             sendMessage(sender, "§bPage: §23/3");
         }
         return true;

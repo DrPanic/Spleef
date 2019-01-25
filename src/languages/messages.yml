@@ -63,6 +63,7 @@ redTeam: "The §cRed team"
 blueTeam: "The §3Blue team"
 greenTeam: "The §2Green team"
 yellowTeam: "The §eYellow team"
+spleefRanking: "Spleef player ranking"
 signColorTag:
   open:
     wait:

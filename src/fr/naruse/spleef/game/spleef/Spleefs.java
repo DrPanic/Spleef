@@ -85,6 +85,10 @@ public class Spleefs {
                                                 spleef = new SpleegSpleef(pl, name, spleefLoc, spleefSpawn, spleefLobby, min, max, isOpen).buildRegion(a, b);
                                                 break;
                                             }
+                                            case BOW:{
+                                                spleef = new BowSpleef(pl, name, spleefLoc, spleefSpawn, spleefLobby, min, max, isOpen).buildRegion(a, b);
+                                                break;
+                                            }
                                         }
                                         Bukkit.getPluginManager().registerEvents(spleef, pl);
                                         for(World world : Bukkit.getWorlds()){
@@ -159,6 +163,9 @@ public class Spleefs {
                 spleefPlayer.setPlayerInventory();
                 spleefPlayer.setPlayerGameMode();
                 spleefPlayer.setIsFlying();
+                spleefPlayer.getSpleefPlayerStatistics().addGames(1);
+                spleefPlayer.getSpleefPlayerStatistics().addLoses(1);
+                spleefPlayer.getSpleefPlayerStatistics().saveStatistics();
             }
             p.setFireTicks(0);
             return true;
@@ -186,5 +193,17 @@ public class Spleefs {
         for(Spleef spleef : getSpleefs()){
             spleef.onDisable(true);
         }
+    }
+
+    public SpleefPlayer getSpleefPlayer(Player p) {
+        if(spleefPlayerOfPlayer.containsKey(p)){
+            return spleefPlayerOfPlayer.get(p);
+        }
+        SpleefPlayer spleefPlayer = new SpleefPlayer(pl, p);
+        spleefPlayer.registerInventory();
+        spleefPlayer.registerGameMode();
+        spleefPlayer.registerIsFlying();
+        spleefPlayerOfPlayer.put(p, spleefPlayer);
+        return spleefPlayer;
     }
 }

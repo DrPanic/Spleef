@@ -5,9 +5,11 @@ import fr.naruse.spleef.main.Main;
 public class Configurations {
     private MessagesConfiguration messages;
     private CommandsConfiguration commands;
+    private StatisticsConfiguration statistics;
     public Configurations(Main pl){
         this.messages = new MessagesConfiguration(pl);
         this.commands = new CommandsConfiguration(pl);
+        this.statistics = new StatisticsConfiguration(pl);
         setDefault(pl);
     }
 
@@ -51,5 +53,9 @@ public class Configurations {
 
     public MessagesConfiguration getMessages() {
         return messages;
+    }
+
+    public StatisticsConfiguration getStatistics() {
+        return statistics;
     }
 }

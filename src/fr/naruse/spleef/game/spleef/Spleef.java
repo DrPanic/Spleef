@@ -4,7 +4,8 @@ import com.google.common.collect.Lists;
 import fr.naruse.spleef.game.SpleefGameMode;
 import fr.naruse.spleef.main.Main;
 import fr.naruse.spleef.util.Message;
-import fr.naruse.spleef.util.ScoreboardSign;
+import fr.naruse.spleef.util.board.ScoreboardSign;
+import fr.naruse.spleef.util.SpleefPlayer;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -142,14 +143,21 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
             }
         } else if (getGame().GAME) {
             if (getPlayerInGame().size() == 1) {
-                Bukkit.broadcastMessage(getNAME() + " §6" + getPlayerInGame().get(0).getName() + " §7" + Message.WINS_THE_GAME.getMessage());
+                Player winner = getPlayerInGame().get(0);
+                if(pl.getConfig().getBoolean("allow.broadcast")){
+                    Bukkit.broadcastMessage(getNAME() + " §6" + winner.getName() + " §7" + Message.WINS_THE_GAME.getMessage());
+                }
                 if (getMain().otherPluginSupport.getVaultPlugin().getEconomy() != null) {
                     if (getMain().getConfig().getInt("rewards.win") != 0) {
-                        getMain().otherPluginSupport.getVaultPlugin().getEconomy().depositPlayer(getPlayerInGame().get(0), getMain().getConfig().getDouble("rewards.win"));
+                        getMain().otherPluginSupport.getVaultPlugin().getEconomy().depositPlayer(winner, getMain().getConfig().getDouble("rewards.win"));
                     }
                 }
-                getMain().wagers.loseWager(getPlayerInGame().get(0));
+                getMain().wagers.loseWager(winner);
                 restart(false);
+                SpleefPlayer spleefPlayer = pl.spleefs.getSpleefPlayer(winner);
+                spleefPlayer.getSpleefPlayerStatistics().addWins(1);
+                spleefPlayer.getSpleefPlayerStatistics().addLoses(-1);
+                spleefPlayer.getSpleefPlayerStatistics().saveStatistics();
             }
             if (getPlayerInGame().size() == 0) {
                 restart(false);
@@ -475,6 +483,10 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
         }
         if(e.getItem().getType() == Material.EGG){
             p.getInventory().addItem(new ItemStack(Material.EGG, 16));
+            e.setCancelled(false);
+        }
+        if(e.getItem().getType() == Material.BOW){
+            p.getInventory().addItem(new ItemStack(Material.ARROW, 64));
             e.setCancelled(false);
         }
     }

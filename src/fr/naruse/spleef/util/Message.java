@@ -69,6 +69,7 @@ public enum Message {
     BLUE_TEAM("L'équipe §3Bleue", "The §3Blue team",  Main.instance.configurations.getMessages().getConfig().getString("blueTeam"), "blueTeam"),
     GREEN_TEAM("L'équipe §2Verte", "The §2Green team",  Main.instance.configurations.getMessages().getConfig().getString("greenTeam"), "greenTeam"),
     YELLOW_TEAM("L'équipe §eJaune", "The §eYellow team",  Main.instance.configurations.getMessages().getConfig().getString("yellowTeam"), "yellowTeam"),
+    SPLEEF_PLAYER_RANKING("Classement des joueurs Spleef", "Spleef player ranking",  Main.instance.configurations.getMessages().getConfig().getString("spleefRanking"), "spleefRanking"),
     ;
 
 

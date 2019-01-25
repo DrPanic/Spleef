@@ -3,9 +3,12 @@ times:
   wait: 10
 allow:
   snowBalls: false
+  broadcast: true
 rewards:
   win: 0
   lose: 0
+holograms:
+  enable: false
 gameMode:
   team:
     glowing: false

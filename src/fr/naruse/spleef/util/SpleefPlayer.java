@@ -3,6 +3,7 @@ package fr.naruse.spleef.util;
 import fr.naruse.spleef.main.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
@@ -12,9 +13,11 @@ public class SpleefPlayer {
     private Main pl;
     private GameMode gameMode;
     private boolean isFlying = false;
+    private SpleefPlayerStatistics spleefPlayerStatistics;
     public SpleefPlayer(Main pl, Player p){
         this.pl = pl;
         this.p = p;
+        this.spleefPlayerStatistics = new SpleefPlayerStatistics(pl, p.getName());
     }
 
     public void registerInventory(){
@@ -57,5 +60,9 @@ public class SpleefPlayer {
 
     public void registerIsFlying(){
         this.isFlying = p.isFlying();
+    }
+
+    public SpleefPlayerStatistics getSpleefPlayerStatistics() {
+        return spleefPlayerStatistics;
     }
 }

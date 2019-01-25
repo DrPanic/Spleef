@@ -7,9 +7,9 @@ import fr.naruse.spleef.game.spleef.Spleefs;
 import fr.naruse.spleef.game.duel.Duels;
 import fr.naruse.spleef.game.wager.Wagers;
 import fr.naruse.spleef.util.Logs;
+import fr.naruse.spleef.util.board.Holograms;
 import fr.naruse.spleef.util.config.Configurations;
 import fr.naruse.spleef.util.support.OtherPluginSupport;
-import fr.naruse.spleef.util.Updater;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,15 +21,12 @@ public class Main extends JavaPlugin {
     public OtherPluginSupport otherPluginSupport;
     public Wagers wagers;
     public Duels duels;
+    public Holograms holograms;
     @Override
     public void onEnable(){
         super.onEnable();
         Logs logs = new Logs();
         this.instance = this;
-        if(new Updater(this).update()){
-            logs.stop();
-            return;
-        }
         this.worldEditPlugin = (WorldEditPlugin) Bukkit.getPluginManager().getPlugin("WorldEdit");
         this.otherPluginSupport = new OtherPluginSupport();
         saveConfig();
@@ -37,6 +34,7 @@ public class Main extends JavaPlugin {
         this.spleefs = new Spleefs(this);
         this.wagers = new Wagers(this);
         this.duels = new Duels(this);
+        this.holograms = new Holograms(this);
         getCommand("spleef").setExecutor(new SpleefCommands(this));
         Bukkit.getPluginManager().registerEvents(new Listeners(this), this);
         Bukkit.getPluginManager().registerEvents(duels, this);
@@ -52,5 +50,6 @@ public class Main extends JavaPlugin {
         if(wagers != null){
             wagers.disable();
         }
+        holograms.removeLeaderBoard();
     }
 }

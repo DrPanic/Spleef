@@ -62,6 +62,7 @@ redTeam: "El §cEquipo Rojo"
 blueTeam: "El §3Equipo Azul"
 greenTeam: "El §2Equipo Verde"
 yellowTeam: "El §eEquipo Amarillo"
+spleefRanking: "Ranking de jugadores de Spleef"
 signColorTag:
   open:
     wait:

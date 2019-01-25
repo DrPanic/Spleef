@@ -20,22 +20,66 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+            <state relative-caret-position="884">
+              <caret line="52" column="38" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/Spleefs.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="484">
+              <caret line="166" column="61" selection-start-line="166" selection-start-column="61" selection-end-line="166" selection-end-column="61" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/Updater.java">
+        <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/board/Holograms.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="18" column="91" selection-start-line="18" selection-start-column="91" selection-end-line="18" selection-end-column="91" />
+            <state relative-caret-position="637">
+              <caret line="154" column="68" selection-start-line="154" selection-start-column="68" selection-end-line="154" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#143#144#0" expanded="true" />
-                <element signature="e#165#166#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/Spleef.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1037">
+              <caret line="158" column="70" lean-forward="true" selection-start-line="158" selection-start-column="70" selection-end-line="158" selection-end-column="70" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/SpleefPlayerStatistics.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1368#1369#0" expanded="true" />
+                <element signature="e#1426#1427#0" expanded="true" />
+                <element signature="e#1594#1595#0" expanded="true" />
+                <element signature="e#1629#1630#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/cmd/SpleefCommands.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1530">
+              <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -58,13 +102,12 @@
       <find>arena</find>
       <find>teleport</find>
       <find>remove</find>
+      <find>allow</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/Scoreboardsign.java" />
-        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/ScoreboardCign.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/tools/SpleefPlayer.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/tools/config/CommandsConfiguration.java" />
         <option value="$PROJECT_DIR$/SpleefMaven/pom.xml" />
@@ -88,30 +131,34 @@
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/spleef/spleef/Spleefs.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/ScoreboardSign.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/TeamMode.java" />
-        <option value="$PROJECT_DIR$/src/config.yml" />
-        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/config/Configurations.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/SpleefTeam.java" />
-        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/Message.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/duel/Duels.java" />
-        <option value="$PROJECT_DIR$/src/languages/messages.yml" />
-        <option value="$PROJECT_DIR$/src/languages/spanish.yml" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/config/MessagesConfiguration.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/event/Listeners.java" />
-        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/cmd/SpleefCommands.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/SpleefNormal.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/SpleefDuel.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/SpleefTwoTeam.java" />
-        <option value="$PROJECT_DIR$/src/plugin.yml" />
-        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/SpleefPlayer.java" />
-        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/SpleefGameMode.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/NormalSpleef.java" />
-        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/Spleefs.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/SpleegSpleef.java" />
-        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/Spleef.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/utils/Updater.java" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/Logs.java" />
-        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/plugin.yml" />
         <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/Updater.java" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/SpleefGameMode.java" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/BowSpleef.java" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/config/Configurations.java" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/config/StatisticsConfiguration.java" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/Spleefs.java" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/Message.java" />
+        <option value="$PROJECT_DIR$/src/languages/messages.yml" />
+        <option value="$PROJECT_DIR$/src/languages/spanish.yml" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/config.yml" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/cmd/SpleefCommands.java" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/SpleefPlayer.java" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/Spleef.java" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/SpleefPlayerStatistics.java" />
+        <option value="$PROJECT_DIR$/src/fr/naruse/spleef/util/board/Holograms.java" />
       </list>
     </option>
   </component>
@@ -133,8 +180,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -231,6 +276,16 @@
               <item name="naruse" type="462c0819:PsiDirectoryNode" />
               <item name="spleef" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="board" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Spleef" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spleef" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="fr" type="462c0819:PsiDirectoryNode" />
+              <item name="naruse" type="462c0819:PsiDirectoryNode" />
+              <item name="spleef" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -245,12 +300,20 @@
             </path>
             <path>
               <item name="Spleef" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Spleef" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="languages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Spleef" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -258,7 +321,7 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548270929289" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548432379195" />
     <property name="last_opened_file_path" value="$USER_HOME$/Desktop/MES-PLUGIN/Vault.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -266,17 +329,17 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="fr.naruse.spleef.util" />
+      <recent name="fr.naruse.spleef.util.board" />
+      <recent name="fr.naruse.spleef.util.config" />
+      <recent name="fr.naruse.spleef.game.spleef" />
+      <recent name="fr.naruse.spleef.utils" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\black\IdeaProjects\Spleef\src\languages" />
       <recent name="C:\Users\black\IdeaProjects\Spleef\src" />
       <recent name="C:\Users\black\IdeaProjects\Spleef\src\spanish" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="fr.naruse.spleef.util" />
-      <recent name="fr.naruse.spleef.utils" />
-      <recent name="fr.naruse.spleef.game.spleef" />
-      <recent name="fr.naruse.spleef.spleef.wagers" />
-      <recent name="fr.naruse.spleef.event" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -328,8 +391,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20682302" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21002132" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -346,7 +410,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Messages" order="10" visible="true" weight="0.32827735" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32827735" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -390,47 +454,13 @@
     <entry file="file://$PROJECT_DIR$/SpleefMaven/pom.xml" />
     <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/wager/Wager.java" />
     <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/wager/Wagers.java" />
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/config/CommandsConfiguration.java" />
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/ScoreboardSign.java" />
     <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/duel/Duels.java" />
-    <entry file="file://$PROJECT_DIR$/src/languages/messages.yml" />
-    <entry file="file://$PROJECT_DIR$/src/languages/spanish.yml" />
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/Message.java" />
-    <entry file="file://$PROJECT_DIR$/src/config.yml" />
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/config/Configurations.java" />
     <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/support/VaultPlugin.java" />
     <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/support/OtherPluginSupport.java" />
     <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/event/Listeners.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
           <caret line="65" column="37" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/cmd/SpleefCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="415" column="18" lean-forward="true" selection-start-line="415" selection-start-column="18" selection-end-line="415" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/SpleefPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
-          <folding>
-            <element signature="e#1362#1363#0" expanded="true" />
-            <element signature="e#1384#1385#0" expanded="true" />
-            <element signature="e#1359#1360#0" expanded="true" />
-            <element signature="e#1403#1404#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -448,13 +478,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/SpleefGameMode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="21" lean-forward="true" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/DuelSpleef.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
@@ -469,85 +492,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/Spleef.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7531">
-          <caret line="476" column="45" selection-start-line="476" selection-start-column="45" selection-end-line="476" selection-end-column="45" />
-          <folding>
-            <element signature="e#18715#18716#0" expanded="true" />
-            <element signature="e#18742#18743#0" expanded="true" />
-            <element signature="e#18773#18774#0" expanded="true" />
-            <element signature="e#18800#18801#0" expanded="true" />
-            <element signature="e#18924#18925#0" expanded="true" />
-            <element signature="e#18957#18958#0" expanded="true" />
-            <element signature="e#18984#18985#0" expanded="true" />
-            <element signature="e#19010#19011#0" expanded="true" />
-            <element signature="e#19037#19038#0" expanded="true" />
-            <element signature="e#19063#19064#0" expanded="true" />
-            <element signature="e#19098#19099#0" expanded="true" />
-            <element signature="e#19128#19129#0" expanded="true" />
-            <element signature="e#19163#19164#0" expanded="true" />
-            <element signature="e#19193#19194#0" expanded="true" />
-            <element signature="e#19231#19232#0" expanded="true" />
-            <element signature="e#19260#19261#0" expanded="true" />
-            <element signature="e#19306#19307#0" expanded="true" />
-            <element signature="e#19343#19344#0" expanded="true" />
-            <element signature="e#19394#19395#0" expanded="true" />
-            <element signature="e#19436#19437#0" expanded="true" />
-            <element signature="e#19472#19473#0" expanded="true" />
-            <element signature="e#19500#19501#0" expanded="true" />
-            <element signature="e#19530#19531#0" expanded="true" />
-            <element signature="e#19554#19555#0" expanded="true" />
-            <element signature="e#19584#19585#0" expanded="true" />
-            <element signature="e#19608#19609#0" expanded="true" />
-            <element signature="e#19646#19647#0" expanded="true" />
-            <element signature="e#19678#19679#0" expanded="true" />
-            <element signature="e#19718#19719#0" expanded="true" />
-            <element signature="e#19752#19753#0" expanded="true" />
-            <element signature="e#19888#19889#0" expanded="true" />
-            <element signature="e#19923#19924#0" expanded="true" />
-            <element signature="e#19952#19953#0" expanded="true" />
-            <element signature="e#19977#19978#0" expanded="true" />
-            <element signature="e#20020#20021#0" expanded="true" />
-            <element signature="e#20051#20052#0" expanded="true" />
-            <element signature="e#20091#20092#0" expanded="true" />
-            <element signature="e#20125#20126#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/SpleegSpleef.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="144" column="77" selection-start-line="144" selection-start-column="77" selection-end-line="144" selection-end-column="77" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/Spleefs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="841">
-          <caret line="186" column="33" selection-start-line="186" selection-start-column="33" selection-end-line="186" selection-end-column="33" />
-          <folding>
-            <element signature="e#10897#10898#0" expanded="true" />
-            <element signature="e#10927#10928#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/Logs.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="96" selection-start-line="8" selection-start-column="96" selection-end-line="8" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/main/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -558,14 +506,159 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/Updater.java">
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/Updater.java" />
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/SpleefGameMode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="91" selection-start-line="18" selection-start-column="91" selection-end-line="18" selection-end-column="91" />
+        <state relative-caret-position="136">
+          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/SpleegSpleef.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="167" column="18" lean-forward="true" selection-start-line="167" selection-start-column="18" selection-end-line="167" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#143#144#0" expanded="true" />
-            <element signature="e#165#166#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/BowSpleef.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="149" column="79" selection-start-line="149" selection-start-column="79" selection-end-line="149" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/config/CommandsConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/config/StatisticsConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="27" column="107" selection-start-line="27" selection-start-column="107" selection-end-line="27" selection-end-column="107" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/config/Configurations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+          <folding>
+            <element signature="e#2143#2144#0" expanded="true" />
+            <element signature="e#2176#2177#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/board/ScoreboardSign.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/languages/spanish.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="64" column="46" lean-forward="true" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/languages/messages.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="65" selection-start-line="65" selection-end-line="65" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="71" column="82" lean-forward="true" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="52" column="38" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/SpleefPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="19" column="80" selection-start-line="19" selection-start-column="80" selection-end-line="19" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/Spleefs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="166" column="61" selection-start-line="166" selection-start-column="61" selection-end-line="166" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/cmd/SpleefCommands.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1530">
+          <caret line="36" column="33" lean-forward="true" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/game/spleef/Spleef.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="158" column="70" lean-forward="true" selection-start-line="158" selection-start-column="70" selection-end-line="158" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/SpleefPlayerStatistics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1368#1369#0" expanded="true" />
+            <element signature="e#1426#1427#0" expanded="true" />
+            <element signature="e#1594#1595#0" expanded="true" />
+            <element signature="e#1629#1630#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fr/naruse/spleef/util/board/Holograms.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="637">
+          <caret line="154" column="68" selection-start-line="154" selection-start-column="68" selection-end-line="154" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
