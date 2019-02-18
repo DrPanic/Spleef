@@ -4,11 +4,16 @@ times:
 allow:
   snowBalls: false
   broadcast: true
+  lightning: true
 rewards:
+  command: null
   win: 0
   lose: 0
 holograms:
   enable: false
 gameMode:
+  decaying:
+    beforeMelt: 60
+    betweenMelt: 1
   team:
     glowing: false

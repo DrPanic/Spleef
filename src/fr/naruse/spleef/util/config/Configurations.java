@@ -1,19 +1,19 @@
 package fr.naruse.spleef.util.config;
 
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.main.SpleefPlugin;
 
 public class Configurations {
     private MessagesConfiguration messages;
     private CommandsConfiguration commands;
     private StatisticsConfiguration statistics;
-    public Configurations(Main pl){
+    public Configurations(SpleefPlugin pl){
         this.messages = new MessagesConfiguration(pl);
         this.commands = new CommandsConfiguration(pl);
         this.statistics = new StatisticsConfiguration(pl);
         setDefault(pl);
     }
 
-    private void setDefault(Main pl) {
+    private void setDefault(SpleefPlugin pl) {
         if(pl.getConfig().getString("lang") == null){
             pl.getConfig().set("lang", "english");
         }else{
@@ -43,6 +43,26 @@ public class Configurations {
             pl.getConfig().set("gameMode.team.glowing", false);
         }else{
             pl.getConfig().set("gameMode.team.glowing", pl.getConfig().getBoolean("gameMode.team.glowing"));
+        }
+        if(pl.getConfig().getString("rewards.command") == null){
+            pl.getConfig().set("rewards.command", "null");
+        }else{
+            pl.getConfig().set("rewards.command", pl.getConfig().getString("rewards.command"));
+        }
+        if(pl.getConfig().getString("gameMode.melt.beforeMelt") == null){
+            pl.getConfig().set("gameMode.melt.beforeMelt", 30);
+        }else{
+            pl.getConfig().set("gameMode.melt.beforeMelt", pl.getConfig().getInt("gameMode.melt.beforeMelt"));
+        }
+        if(pl.getConfig().getString("gameMode.melt.betweenMelt") == null){
+            pl.getConfig().set("gameMode.melt.betweenMelt", 1);
+        }else{
+            pl.getConfig().set("gameMode.melt.betweenMelt", pl.getConfig().getInt("gameMode.melt.betweenMelt"));
+        }
+        if(pl.getConfig().getString("allow.lightning") == null){
+            pl.getConfig().set("allow.lightning", 1);
+        }else{
+            pl.getConfig().set("allow.lightning", pl.getConfig().getBoolean("allow.lightning"));
         }
         pl.saveConfig();
     }

@@ -1,16 +1,16 @@
 package fr.naruse.spleef.util;
 
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.main.SpleefPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class SpleefPlayerStatistics {
-    private Main pl;
+    private SpleefPlugin pl;
     private long wins;
     private long loses;
     private long games;
     private FileConfiguration statistic;
     private String name;
-    public SpleefPlayerStatistics(Main pl, String name){
+    public SpleefPlayerStatistics(SpleefPlugin pl, String name){
         this.pl = pl;
         this.statistic = pl.configurations.getStatistics().getConfig();
         this.name = name;

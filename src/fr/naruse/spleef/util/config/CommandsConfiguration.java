@@ -1,6 +1,6 @@
 package fr.naruse.spleef.util.config;
 
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.main.SpleefPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -9,11 +9,11 @@ import java.io.File;
 import java.io.IOException;
 
 public class CommandsConfiguration {
-    private Main pl;
+    private SpleefPlugin pl;
     private File commandsFile;
     private FileConfiguration commands;
-    public CommandsConfiguration(Main main) {
-        this.pl = main;
+    public CommandsConfiguration(SpleefPlugin spleefPlugin) {
+        this.pl = spleefPlugin;
         createConfig();
     }
 

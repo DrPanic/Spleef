@@ -1,6 +1,6 @@
 package fr.naruse.spleef.event;
 
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.main.SpleefPlugin;
 import fr.naruse.spleef.game.spleef.Spleef;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
@@ -14,9 +14,9 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import java.util.List;
 
 public class Listeners implements Listener {
-    private Main pl;
-    public Listeners(Main main) {
-        this.pl = main;
+    private SpleefPlugin pl;
+    public Listeners(SpleefPlugin spleefPlugin) {
+        this.pl = spleefPlugin;
     }
 
     @EventHandler

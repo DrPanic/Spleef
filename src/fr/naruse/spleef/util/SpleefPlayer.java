@@ -1,20 +1,19 @@
 package fr.naruse.spleef.util;
 
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.main.SpleefPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 public class SpleefPlayer {
     private Inventory inv;
     private Player p;
-    private Main pl;
+    private SpleefPlugin pl;
     private GameMode gameMode;
     private boolean isFlying = false;
     private SpleefPlayerStatistics spleefPlayerStatistics;
-    public SpleefPlayer(Main pl, Player p){
+    public SpleefPlayer(SpleefPlugin pl, Player p){
         this.pl = pl;
         this.p = p;
         this.spleefPlayerStatistics = new SpleefPlayerStatistics(pl, p.getName());

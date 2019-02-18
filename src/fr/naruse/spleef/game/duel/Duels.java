@@ -1,7 +1,7 @@
 package fr.naruse.spleef.game.duel;
 
 import com.google.common.collect.Lists;
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.main.SpleefPlugin;
 import fr.naruse.spleef.util.Message;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,12 +12,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Duels implements Listener {
-    private Main pl;
+    private SpleefPlugin pl;
     private HashMap<Player, Player> inviteOfPlayer = new HashMap<>();
     private HashMap<Player, Player> receiveOfPlayer = new HashMap<>();
     private List<Player> playerInDuel = Lists.newArrayList();
-    public Duels(Main main) {
-        this.pl = main;
+    public Duels(SpleefPlugin spleefPlugin) {
+        this.pl = spleefPlugin;
     }
 
     public boolean invite(Player p, Player target){

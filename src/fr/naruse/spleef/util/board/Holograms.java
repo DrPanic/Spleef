@@ -1,22 +1,19 @@
 package fr.naruse.spleef.util.board;
 
 import com.google.common.collect.Lists;
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.main.SpleefPlugin;
 import fr.naruse.spleef.util.Message;
 import fr.naruse.spleef.util.Reflections;
 import fr.naruse.spleef.util.SpleefPlayerStatistics;
-import net.minecraft.server.v1_12_R1.EntityArmorStand;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.lang.reflect.InvocationTargetException;
@@ -25,14 +22,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Holograms extends BukkitRunnable implements Listener {
-    private Main pl;
+    private SpleefPlugin pl;
     private List<ArmorStand> entities = Lists.newArrayList();
     private ArmorStand[] armorStands;
-    private Location location;
+    private Location location = null;
     private HashMap<OfflinePlayer, Long> playerPoints = new HashMap<>();
     private boolean isRunning = false;
-    public Holograms(Main main) {
-        this.pl = main;
+    public Holograms(SpleefPlugin spleefPlugin) {
+        this.pl = spleefPlugin;
         if(pl.getConfig().getString("holograms.location.x") == null){
             return;
         }
@@ -45,7 +42,7 @@ public class Holograms extends BukkitRunnable implements Listener {
             return;
         }
         Bukkit.getPluginManager().registerEvents(this, pl);
-        for(int i = 0; i != 11; i++){
+        for(int i = 0; i != 6; i++){
             ArmorStand armorStand = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
             try {
                 Reflections.setNoGravity(armorStand, true);
@@ -71,8 +68,8 @@ public class Holograms extends BukkitRunnable implements Listener {
                 playerPoints.put(p, points);
             }
         }
-        armorStands[10].setCustomName("§6"+ Message.SPLEEF_PLAYER_RANKING.getMessage());
-        armorStands[10].setCustomNameVisible(true);
+        armorStands[5].setCustomName("§6"+ Message.SPLEEF_PLAYER_RANKING.getMessage()+"§c§c§l");
+        armorStands[5].setCustomNameVisible(true);
         this.runTaskTimer(pl, 20*5, 20*5);
         this.run();
         this.isRunning = true;
@@ -82,7 +79,7 @@ public class Holograms extends BukkitRunnable implements Listener {
     public void run() {
         addPlayers();
         HashMap<Long, List<OfflinePlayer>> placeAndPlayer = getLeaderBoard();
-        int count = 1, count2 = 10;
+        int count = 1, count2 = 5;
         List<ArmorStand> armorStandUsed = Lists.newArrayList();
         for(int o = placeAndPlayer.size()-1; o >= 0; o--){
             String name = "§d-§6"+count+":,";
@@ -95,12 +92,12 @@ public class Holograms extends BukkitRunnable implements Listener {
                     }
                 }
                 name = name.replace(",,", "");
-                armorStands[count2-1].setCustomName(name);
+                armorStands[count2-1].setCustomName(name+"§c§c§l");
                 armorStands[count2-1].setCustomNameVisible(true);
                 if(!armorStandUsed.contains(armorStands[count2-1])){
                     armorStandUsed.add(armorStands[count2-1]);
                 }
-                if(count == 10 || count2 == 1){
+                if(count == 5 || count2 == 1){
                     break;
                 }
                 count++;
@@ -108,7 +105,7 @@ public class Holograms extends BukkitRunnable implements Listener {
             }
         }
         for(ArmorStand as : entities){
-            if(!armorStandUsed.contains(as) && armorStands[10] != as){
+            if(!armorStandUsed.contains(as) && armorStands[5] != as){
                 if(as.isCustomNameVisible()){
                     as.setCustomNameVisible(false);
                 }
@@ -154,6 +151,18 @@ public class Holograms extends BukkitRunnable implements Listener {
         }
         for(ArmorStand as : entities){
             as.remove();
+        }
+        if(location != null){
+            for(Entity e : location.getWorld().getEntities()){
+                if(e instanceof ArmorStand){
+                    if(e.isCustomNameVisible()){
+                        if(e.getCustomName().contains("§c§c§l")){
+                            e.remove();
+                            ((ArmorStand) e).setHealth(0);
+                        }
+                    }
+                }
+            }
         }
     }
 

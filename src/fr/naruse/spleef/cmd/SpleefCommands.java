@@ -3,8 +3,8 @@ package fr.naruse.spleef.cmd;
 import com.google.common.collect.Lists;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.selections.Selection;
-import fr.naruse.spleef.main.Main;
-import fr.naruse.spleef.game.SpleefGameMode;
+import fr.naruse.spleef.main.SpleefPlugin;
+import fr.naruse.spleef.game.spleef.SpleefGameMode;
 import fr.naruse.spleef.game.spleef.Spleef;
 import fr.naruse.spleef.util.Message;
 import fr.naruse.spleef.util.board.Holograms;
@@ -19,9 +19,9 @@ import org.bukkit.entity.Player;
 import java.util.List;
 
 public class SpleefCommands implements CommandExecutor, TabExecutor {
-    private Main pl;
-    public SpleefCommands(Main main) {
-        this.pl = main;
+    private SpleefPlugin pl;
+    public SpleefCommands(SpleefPlugin spleefPlugin) {
+        this.pl = spleefPlugin;
     }
 
     @Override
@@ -238,12 +238,14 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
                         pl.getConfig().set("holograms.location.z", p.getLocation().getZ());
                         pl.getConfig().set("holograms.location.world", p.getLocation().getWorld().getName());
                         pl.saveConfig();
+                        pl.holograms.removeLeaderBoard();
                         pl.holograms = new Holograms(pl);
                         return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+ Message.LOCATION_SAVED.getMessage());
                     }
                     if(args[2].equalsIgnoreCase("enable")){
                         pl.getConfig().set("holograms.enable", !pl.getConfig().getBoolean("holograms.enable"));
                         pl.saveConfig();
+                        pl.holograms.removeLeaderBoard();
                         pl.holograms = new Holograms(pl);
                         return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+ Message.SETTING_SAVED.getMessage());
                     }
@@ -256,6 +258,20 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
                 if(args[1].equalsIgnoreCase("rewards")){
                     if(args.length < 4){
                         return help(sender, 2);
+                    }
+                    if(args[2].equalsIgnoreCase("command")){
+                        if(args[3].equalsIgnoreCase("null")){
+                            pl.getConfig().set("rewards.command", "null");
+                            pl.saveConfig();
+                            return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.SETTING_SAVED.getMessage()+" §7(Rewards.command deleted)");
+                        }
+                        String result = "";
+                        for(int i = 3; i != args.length; i++){
+                            result += " "+args[i];
+                        }
+                        pl.getConfig().set("rewards.command", result);
+                        pl.saveConfig();
+                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.SETTING_SAVED.getMessage()+" §7(Rewards.command:"+result+")");
                     }
                     double d;
                     try{
@@ -283,24 +299,35 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
                         pl.getConfig().set("lang", "french");
                         pl.saveConfig();
                         pl.configurations.getMessages().clearConfiguration();
+                        pl.configurations.getMessages().generateConfig(false);
+                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.LANG_SAVED.getMessage());
+                    }
+                    if(args[2].equalsIgnoreCase("dutch")){
+                        pl.getConfig().set("lang", "dutch");
+                        pl.saveConfig();
+                        pl.configurations.getMessages().clearConfiguration();
+                        pl.configurations.getMessages().generateConfig(false);
                         return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.LANG_SAVED.getMessage());
                     }
                     if(args[2].equalsIgnoreCase("english")){
                         pl.getConfig().set("lang", "english");
                         pl.saveConfig();
                         pl.configurations.getMessages().clearConfiguration();
+                        pl.configurations.getMessages().generateConfig(false);
                         return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.LANG_SAVED.getMessage());
                     }
                     if(args[2].equalsIgnoreCase("custom")){
                         pl.getConfig().set("lang", "custom");
                         pl.saveConfig();
                         pl.configurations.getMessages().clearConfiguration();
+                        pl.configurations.getMessages().generateConfig(false);
                         return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.LANG_SAVED.getMessage());
                     }
                     if(args[2].equalsIgnoreCase("spanish")){
                         pl.getConfig().set("lang", "spanish");
                         pl.saveConfig();
                         pl.configurations.getMessages().clearConfiguration();
+                        pl.configurations.getMessages().generateConfig(false);
                         return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.LANG_SAVED.getMessage());
                     }
                     return false;
@@ -309,16 +336,26 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
                     if(args.length < 4){
                         return help(sender, 1);
                     }
+                    int time;
+                    try{
+                        time = Integer.valueOf(args[3]);
+                    }catch (Exception e){
+                        return sendMessage(sender, "§c"+Message.NEED_A_NUMBER.getMessage());
+                    }
                     if(args[2].equalsIgnoreCase("wait")){
-                        int time;
-                        try{
-                            time = Integer.valueOf(args[3]);
-                        }catch (Exception e){
-                            return sendMessage(sender, "§c"+Message.NEED_A_NUMBER.getMessage());
-                        }
                         pl.getConfig().set("times.wait", time);
                         pl.saveConfig();
-                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.NUMBER_SAVED.getMessage());
+                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.NUMBER_SAVED.getMessage()+ "§7 (Wait: "+time+")");
+                    }
+                    if(args[2].equalsIgnoreCase("beforeMelt")){
+                        pl.getConfig().set("gameMode.melt.beforeMelt", time);
+                        pl.saveConfig();
+                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.NUMBER_SAVED.getMessage()+ "§7 (TimeBeforeMelt: "+time+")");
+                    }
+                    if(args[2].equalsIgnoreCase("betweenMelt")){
+                        pl.getConfig().set("gameMode.melt.betweenMelt", time);
+                        pl.saveConfig();
+                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.NUMBER_SAVED.getMessage()+ "§7 (betweenMelt: "+time+")");
                     }
                     return false;
                 }
@@ -338,7 +375,8 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
                     return sendMessage(sender, "§c"+Message.SPLEEF_NOT_FOUND.getMessage());
                 }
                 if(args[1].equalsIgnoreCase("gameMode")){
-                    SpleefGameMode gameMode = SpleefGameMode.valueOf(args[3]);
+                    String name = args[3].toUpperCase();
+                    SpleefGameMode gameMode = SpleefGameMode.valueOf(name);
                     if(gameMode == null){
                         return sendMessage(sender, "§c"+Message.SPLEEF_GAME_MODE_NOT_FOUND.getMessage());
                     }
@@ -602,6 +640,17 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
                         return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.DONE.getMessage()+" §7(Broadcast: true)");
                     }
                 }
+                if(args[1].equalsIgnoreCase("lightning")){
+                    if(pl.getConfig().getBoolean("allow.lightning")){
+                        pl.getConfig().set("allow.lightning", false);
+                        pl.saveConfig();
+                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.DONE.getMessage()+" §7(Lightning: false)");
+                    }else{
+                        pl.getConfig().set("allow.lightning", true);
+                        pl.saveConfig();
+                        return sendMessage(sender, Message.SPLEEF.getMessage()+" §a"+Message.DONE.getMessage()+" §7(Lightning: true)");
+                    }
+                }
             }
             if(args[0].equalsIgnoreCase("remove")){
                 if(args.length < 3){
@@ -635,10 +684,10 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
     }
 
     private boolean hasPermission(Player p, String msg){
-        if(!p.hasPermission(msg)){
-            if(!p.getName().equalsIgnoreCase("NaruseII")){
+        if(!p.hasPermission(msg)) {
+            //if(!p.getName().equalsIgnoreCase("NaruseII")){
                 return false;
-            }
+            //}
         }
         return true;
     }
@@ -652,22 +701,23 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
             sendMessage(sender, "§3Hey! §6/§cspleef set <Min, Max> <Spleef name> <Number>");
             sendMessage(sender, "§3Hey! §6/§cspleef set <Arena, Spawn, [Lobby]> <Spleef name> §7(Location)");
             sendMessage(sender, "§3Hey! §6/§cspleef <Open, Close> <Spleef name>");
-            sendMessage(sender, "§3Hey! §6/§cspleef set lang <French, English, Custom, Spanish>");
+            sendMessage(sender, "§3Hey! §6/§cspleef set lang <French, English, Custom, Spanish, Dutch>");
             sendMessage(sender, "§bPage: §21/3");
         }else if(page == 2){
             sendMessage(sender, Message.SPLEEF.getMessage()+"§2 ----------------- "+Message.SPLEEF.getMessage());
             sendMessage(sender, "§3Hey! §6/§cspleef list");
             sendMessage(sender, "§3Hey! §6/§cspleef force <Start, Stop> <Spleef name>");
-            sendMessage(sender, "§3Hey! §6/§cspleef allow <SnowBalls, Broadcast>");
-            sendMessage(sender, "§3Hey! §6/§cspleef set time <Wait> <Number>");
+            sendMessage(sender, "§3Hey! §6/§cspleef allow <SnowBalls, Broadcast, Lightning>");
+            sendMessage(sender, "§3Hey! §6/§cspleef set time <Wait, BeforeMelt, BetweenMelt> <Number>");
             sendMessage(sender, "§3Hey! §6/§cspleef set region <Spleef name>");
             sendMessage(sender, "§3Hey! §6/§cspleef set regionWithPos <Spleef name> <Pos1, Pos2>");
             sendMessage(sender, "§3Hey! §6/§cspleef remove region <Spleef name>");
-            sendMessage(sender, "§3Hey! §6/§cspleef set rewards <Win, Lose> <Number>");
+            sendMessage(sender, "§3Hey! §6/§cspleef set gameMode <Spleef name> <Game Mode>");
             sendMessage(sender, "§bPage: §22/3");
         }else if(page == 3){
             sendMessage(sender, Message.SPLEEF.getMessage()+"§2 ----------------- "+Message.SPLEEF.getMessage());
-            sendMessage(sender, "§3Hey! §6/§cspleef set gameMode <Spleef name> <Game Mode>");
+            sendMessage(sender, "§3Hey! §6/§cspleef set rewards <Win, Lose> <Number>");
+            sendMessage(sender, "§3Hey! §6/§cspleef set rewards command <Command> §7(Write 'null' reset the command. Write '{player}' if you want the players' name)");
             sendMessage(sender, "§3Hey! §6/§cspleef set glowing §7(Make players glowing in team mode)");
             sendMessage(sender, "§3Hey! §6/§cspleef set holograms <Location, Enable>");
             sendMessage(sender, "§bPage: §23/3");

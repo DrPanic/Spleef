@@ -1,6 +1,6 @@
 package fr.naruse.spleef.util.config;
 
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.main.SpleefPlugin;
 import fr.naruse.spleef.util.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -9,25 +9,27 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.*;
 
 public class MessagesConfiguration {
-    private Main pl;
+    private SpleefPlugin pl;
     private File messagesFile;
     private FileConfiguration messages;
-    public MessagesConfiguration(Main main) {
-        this.pl = main;
-        createConfig();
+    public MessagesConfiguration(SpleefPlugin spleefPlugin) {
+        this.pl = spleefPlugin;
+        createConfig(false);
     }
 
-    private void createConfig(){
+    private void createConfig(boolean empty){
         messagesFile = new File(pl.getDataFolder(), "messages.yml");
         messages = new YamlConfiguration();
         try{
             if(!messagesFile.exists()){
                 messagesFile.createNewFile();
             }
-            Reader defConfigStream;
-            defConfigStream = new InputStreamReader(pl.getResource(langFileName()), "UTF8");
-            YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-            messages.setDefaults(defConfig);
+            if(!empty){
+                Reader defConfigStream;
+                defConfigStream = new InputStreamReader(pl.getResource(langFileName()), "UTF8");
+                YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
+                messages.setDefaults(defConfig);
+            }
         } catch (UnsupportedEncodingException e) {
             Bukkit.getConsoleSender().sendMessage("§3[Spleef] §cThere is an error with the configuration Messages.yml. You should perform a reload.");
             e.printStackTrace();
@@ -61,7 +63,13 @@ public class MessagesConfiguration {
         if(pl.getConfig().getString("lang").equalsIgnoreCase("spanish")){
             return "languages/spanish.yml";
         }
-        return "languages/messages.yml";
+        if(pl.getConfig().getString("lang").equalsIgnoreCase("dutch")){
+            return "languages/dutch.yml";
+        }
+        if(pl.getConfig().getString("lang").equalsIgnoreCase("french")){
+            return "languages/french.yml";
+        }
+        return "languages/english.yml";
     }
 
     public FileConfiguration getConfig(){
@@ -88,6 +96,9 @@ public class MessagesConfiguration {
 
     public void clearConfiguration(){
         messagesFile.delete();
-        createConfig();
+    }
+
+    public void generateConfig(boolean empty){
+        createConfig(empty);
     }
 }

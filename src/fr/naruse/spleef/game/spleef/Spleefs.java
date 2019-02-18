@@ -1,8 +1,8 @@
 package fr.naruse.spleef.game.spleef;
 
 import com.google.common.collect.Lists;
-import fr.naruse.spleef.game.SpleefGameMode;
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.game.spleef.type.*;
+import fr.naruse.spleef.main.SpleefPlugin;
 import fr.naruse.spleef.util.Message;
 import fr.naruse.spleef.util.SpleefPlayer;
 import org.bukkit.Bukkit;
@@ -14,11 +14,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Spleefs {
-    private Main pl;
+    private SpleefPlugin pl;
     private List<Spleef> spleefs = Lists.newArrayList();
     private HashMap<Player, Spleef> spleefOfPlayer = new HashMap<>();
     private HashMap<Player, SpleefPlayer> spleefPlayerOfPlayer = new HashMap<>();
-    public Spleefs(Main pl) {
+    public Spleefs(SpleefPlugin pl) {
         this.pl = pl;
         int count = 0;
         for(int i = 0; i != 999; i++){
@@ -32,7 +32,7 @@ public class Spleefs {
                                     World wLoc = Bukkit.getWorld(pl.getConfig().getString("spleef."+i+".spleef.world"));
                                     World wSpawn = Bukkit.getWorld(pl.getConfig().getString("spleef."+i+".spawn.world"));
                                     if(wLoc == null || wSpawn == null){
-                                        Bukkit.getConsoleSender().sendMessage(Message.SPLEEF.getMessage()+" §cEither a world is not found, either a number was wrote wrong.");
+                                        Bukkit.getConsoleSender().sendMessage(Message.SPLEEF.getMessage()+" §cA world is not found.");
                                         return;
                                     }else{
                                         Location spleefLoc = new Location(wLoc, pl.getConfig().getDouble("spleef."+i+".spleef.x"),
@@ -87,6 +87,14 @@ public class Spleefs {
                                             }
                                             case BOW:{
                                                 spleef = new BowSpleef(pl, name, spleefLoc, spleefSpawn, spleefLobby, min, max, isOpen).buildRegion(a, b);
+                                                break;
+                                            }
+                                            case MELTING:{
+                                                if(a == null || b == null){
+                                                    Bukkit.getConsoleSender().sendMessage(Message.SPLEEF.getMessage()+" §cMelting spleef need a region. §7(Spleef name: "+name+")");
+                                                    return;
+                                                }
+                                                spleef = new MeltingSpleef(pl, name, spleefLoc, spleefSpawn, spleefLobby, min, max, isOpen).buildRegion(a, b);
                                                 break;
                                             }
                                         }
@@ -177,6 +185,7 @@ public class Spleefs {
         for(Spleef spleef : spleefs){
             spleef.restart(false);
             spleef.stop();
+            spleef.onDisable(true);
         }
         pl.spleefs = new Spleefs(pl);
     }

@@ -63,6 +63,8 @@ blueTeam: "El §3Equipo Azul"
 greenTeam: "El §2Equipo Verde"
 yellowTeam: "El §eEquipo Amarillo"
 spleefRanking: "Ranking de jugadores de Spleef"
+meltingBegings: "Comienza el deshielo!"
+dontStayOnBlock: "No te quedes en la misma cuadra!"
 signColorTag:
   open:
     wait:

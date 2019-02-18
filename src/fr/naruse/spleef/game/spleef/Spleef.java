@@ -1,9 +1,9 @@
 package fr.naruse.spleef.game.spleef;
 
 import com.google.common.collect.Lists;
-import fr.naruse.spleef.game.SpleefGameMode;
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.main.SpleefPlugin;
 import fr.naruse.spleef.util.Message;
+import fr.naruse.spleef.util.Utils;
 import fr.naruse.spleef.util.board.ScoreboardSign;
 import fr.naruse.spleef.util.SpleefPlayer;
 import org.bukkit.*;
@@ -17,6 +17,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.ItemSpawnEvent;
+import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -27,11 +28,12 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 public abstract class Spleef extends BukkitRunnable implements Listener{
-    private Main pl;
+    private SpleefPlugin pl;
     private String NAME;
     private String name;
     private boolean isOpen;
@@ -46,7 +48,7 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
     private Game game;
     private ScoreboardSign scoreboardSign;
     private SpleefGameMode gameMode;
-    public Spleef(Main pl, SpleefGameMode gameMode, String name, Location spleefLoc, Location spleefSpawn, Location spleefLobby, int min, int max, boolean isOpen){
+    public Spleef(SpleefPlugin pl, SpleefGameMode gameMode, String name, Location spleefLoc, Location spleefSpawn, Location spleefLobby, int min, int max, boolean isOpen){
         this.pl = pl;
         this.gameMode = gameMode;
         this.name = name;
@@ -64,6 +66,8 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
 
     public abstract void runScheduler();
 
+    public abstract void runTickScheduler();
+
     public abstract void removePlayer(Player p);
 
     public abstract boolean addPlayer(Player p);
@@ -78,11 +82,37 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
 
     private int time = 0;
     private int timePerMinute = 0;
+    private HashMap<Player, Integer> restingTime = new HashMap<>();
+    private HashMap<Player, Block> lastBlock = new HashMap<>();
     @Override
     public void run() {
         for(Player p : playerInGame){
             p.setFoodLevel(20);
             p.setHealth(20);
+            if(game.GAME){
+                if(Utils.compare(lastBlock.get(p).getLocation(), p.getLocation().getBlock().getLocation())){
+                    restingTime.put(p, restingTime.get(p)+1);
+                }else{
+                    restingTime.put(p, 0);
+                    lastBlock.put(p, p.getLocation().getBlock());
+                }
+                if(restingTime.get(p) == 20*5){
+                    p.sendMessage(NAME+" §cHey! §a"+Message.DONT_STAY_ON_A_BLOCK.getMessage());
+                }
+                if(restingTime.get(p) >= 20*10){
+                    restingTime.put(p, 0);
+                    for(int i = 0; i != 3; i++){
+                        for(Block b : Utils.getCircle(p.getLocation().add(0, -1, 0), i)){
+                            blocksOfRegionVerif.remove(b);
+                            blocks.add(b);
+                            b.setType(Material.AIR);
+                            if(pl.getConfig().getBoolean("allow.lightning")){
+                                b.getWorld().strikeLightningEffect(b.getLocation());
+                            }
+                        }
+                    }
+                }
+            }
         }
         if(time >= 20){
             time = 0;
@@ -122,6 +152,7 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
                 }
             }
         }
+        runTickScheduler();
     }
 
     public void runNormalScheduler(){
@@ -146,6 +177,9 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
                 Player winner = getPlayerInGame().get(0);
                 if(pl.getConfig().getBoolean("allow.broadcast")){
                     Bukkit.broadcastMessage(getNAME() + " §6" + winner.getName() + " §7" + Message.WINS_THE_GAME.getMessage());
+                }
+                if(!pl.getConfig().getString("rewards.command").equalsIgnoreCase("null")){
+                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), pl.getConfig().getString("rewards.command").replace("{player}", winner.getName()));
                 }
                 if (getMain().otherPluginSupport.getVaultPlugin().getEconomy() != null) {
                     if (getMain().getConfig().getInt("rewards.win") != 0) {
@@ -175,6 +209,8 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
         if(spleefLobby != null){
             p.teleport(spleefLobby);
         }
+        lastBlock.put(p, p.getLocation().getBlock());
+        restingTime.put(p, 0);
     }
 
     public void runNormalStart(){
@@ -430,7 +466,7 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
         if(e.getBlock() == null){
             return;
         }
-        if(gameMode == SpleefGameMode.SPLEGG){
+        if(getPlayerInGame().contains(p) && gameMode == SpleefGameMode.SPLEGG){
             e.setCancelled(true);
             return;
         }
@@ -489,6 +525,11 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
             p.getInventory().addItem(new ItemStack(Material.ARROW, 64));
             e.setCancelled(false);
         }
+        if(e.getItem().getType() == Material.SNOW_BALL){
+            if(pl.getConfig().getBoolean("allow.snowBalls")){
+                e.setCancelled(false);
+            }
+        }
     }
 
     @EventHandler
@@ -504,6 +545,33 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
         if(playerInGame.contains(p)){
             pl.spleefs.removePlayer(p);
         }
+    }
+
+    @EventHandler
+    public void hitEvent(ProjectileHitEvent e){
+        if(!pl.getConfig().getBoolean("allow.snowBalls")){
+            return;
+        }
+        if(e.getHitEntity() != null){
+            if(e.getHitEntity() instanceof Player && e.getEntity().getShooter() instanceof Player){
+                if(playerInGame.contains(e.getHitEntity())){
+                    e.getHitEntity().setVelocity(genVector(((Player) e.getEntity().getShooter()).getLocation(), e.getHitEntity().getLocation()).multiply(0.5));
+                }
+            }
+        }
+    }
+
+    public Vector genVector(Location a, Location b) {
+        double dX = a.getX() - b.getX();
+        double dY = a.getY() - b.getY();
+        double dZ = a.getZ() - b.getZ();
+        double yaw = Math.atan2(dZ, dX);
+        double pitch = Math.atan2(Math.sqrt(dZ * dZ + dX * dX), dY) + Math.PI;
+        double x = Math.sin(pitch) * Math.cos(yaw);
+        double y = Math.sin(pitch) * Math.sin(yaw);
+        double z = Math.cos(pitch);
+        Vector vector = new Vector(x, z, y);
+        return vector;
     }
 
     public int getOriginalStartTimer(){
@@ -582,7 +650,7 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
         return playerInGame;
     }
 
-    public Main getMain() {
+    public SpleefPlugin getMain() {
         return pl;
     }
 

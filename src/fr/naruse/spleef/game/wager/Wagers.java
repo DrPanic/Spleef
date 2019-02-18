@@ -1,7 +1,7 @@
 package fr.naruse.spleef.game.wager;
 
 import com.google.common.collect.Lists;
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.main.SpleefPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -9,10 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Wagers {
-    private Main pl;
+    private SpleefPlugin pl;
     private List<Wager> wagers = Lists.newArrayList();
     private HashMap<Player, Wager> wagerOfPlayer = new HashMap<>();
-    public Wagers(Main pl){
+    public Wagers(SpleefPlugin pl){
         this.pl = pl;
     }
 

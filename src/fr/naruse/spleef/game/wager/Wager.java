@@ -1,7 +1,7 @@
 package fr.naruse.spleef.game.wager;
 
 import com.google.common.collect.Lists;
-import fr.naruse.spleef.main.Main;
+import fr.naruse.spleef.main.SpleefPlugin;
 import fr.naruse.spleef.util.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Wager implements Listener {
-    private Main pl;
+    private SpleefPlugin pl;
     private Player player1;
     private Player player2;
     private Player lost = null;
@@ -29,7 +29,7 @@ public class Wager implements Listener {
     private boolean wagerAccepted = false, player1Ready = false, player2Ready = false, player1FinalReady = false, player2FinalReady = false;
     private boolean wagerActive = false, rewardsGot = false;
     public boolean stop = false;
-    public Wager(Main pl, Player p, Player p2) {
+    public Wager(SpleefPlugin pl, Player p, Player p2) {
         this.pl = pl;
         this.player1 = p;
         this.player2 = p2;
