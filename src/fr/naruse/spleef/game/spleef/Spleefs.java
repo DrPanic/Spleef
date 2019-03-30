@@ -215,4 +215,8 @@ public class Spleefs {
         spleefPlayerOfPlayer.put(p, spleefPlayer);
         return spleefPlayer;
     }
+
+    public boolean hasSpleefPlayer(Player p){
+        return spleefPlayerOfPlayer.containsKey(p);
+    }
 }

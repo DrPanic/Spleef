@@ -72,6 +72,7 @@ public enum Message {
     SPLEEF_PLAYER_RANKING("Classement des joueurs Spleef", "Spleef player ranking",  SpleefPlugin.INSTANCE.configurations.getMessages().getConfig().getString("spleefRanking"), "spleefRanking"),
     THE_MELTING_BEGINS("La fonte commence!", "The melting begings!",  SpleefPlugin.INSTANCE.configurations.getMessages().getConfig().getString("meltingBegings"), "meltingBegings"),
     DONT_STAY_ON_A_BLOCK("Ne restez pas sur le même bloc!", "Don't stay on the same block!",  SpleefPlugin.INSTANCE.configurations.getMessages().getConfig().getString("dontStayOnBlock"), "dontStayOnBlock"),
+    COMMAND_PROHIBITED("Cette commande a été désactivée par un administrateur.", "This command has been prohibited by an administrator.",  SpleefPlugin.INSTANCE.configurations.getMessages().getConfig().getString("commandProhibited"), "commandProhibited"),
     ;
 
 

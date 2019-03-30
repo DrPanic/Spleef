@@ -55,13 +55,15 @@ public class MeltingSpleef extends Spleef {
         if(!melt){
             return;
         }
-        timeTicks++;
-        if(timeTicks == timeBetweenMelt){
-            timeTicks = 0;
-            Block b = getBlocksOfRegionVerif().get(new Random().nextInt(getBlocksOfRegionVerif().size()));
-            getBlocks().add(b);
-            getBlocksOfRegionVerif().remove(b);
-            b.setType(Material.AIR);
+        if(getGame().GAME){
+            timeTicks++;
+            if(timeTicks == timeBetweenMelt){
+                timeTicks = 0;
+                Block b = getBlocksOfRegionVerif().get(new Random().nextInt(getBlocksOfRegionVerif().size()));
+                getBlocks().add(b);
+                getBlocksOfRegionVerif().remove(b);
+                b.setType(Material.AIR);
+            }
         }
     }
 
@@ -167,6 +169,8 @@ public class MeltingSpleef extends Spleef {
     @Override
     public void restart(boolean notOnDisable) {
         this.runNormalRestart(notOnDisable);
+        melt = false;
+        timeTicks = 0;
     }
 
     @Override

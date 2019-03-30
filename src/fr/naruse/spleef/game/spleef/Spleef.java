@@ -99,15 +99,17 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
                 if(restingTime.get(p) == 20*5){
                     p.sendMessage(NAME+" §cHey! §a"+Message.DONT_STAY_ON_A_BLOCK.getMessage());
                 }
-                if(restingTime.get(p) >= 20*10){
+                if(restingTime.get(p) >= 20*7){
                     restingTime.put(p, 0);
                     for(int i = 0; i != 3; i++){
                         for(Block b : Utils.getCircle(p.getLocation().add(0, -1, 0), i)){
-                            blocksOfRegionVerif.remove(b);
-                            blocks.add(b);
-                            b.setType(Material.AIR);
-                            if(pl.getConfig().getBoolean("allow.lightning")){
-                                b.getWorld().strikeLightningEffect(b.getLocation());
+                            if(b.getType() == Material.SNOW_BLOCK){
+                                blocksOfRegionVerif.remove(b);
+                                blocks.add(b);
+                                b.setType(Material.AIR);
+                                if(pl.getConfig().getBoolean("allow.lightning")){
+                                    b.getWorld().strikeLightningEffect(b.getLocation());
+                                }
                             }
                         }
                     }
@@ -543,6 +545,10 @@ public abstract class Spleef extends BukkitRunnable implements Listener{
     public void quit(PlayerQuitEvent e){
         Player p = e.getPlayer();
         if(playerInGame.contains(p)){
+            if(pl.spleefs.hasSpleefPlayer(p)) {
+                SpleefPlayer spleefPlayer = pl.spleefs.getSpleefPlayer(p);
+                spleefPlayer.setPlayerInventory();
+            }
             pl.spleefs.removePlayer(p);
         }
     }

@@ -66,6 +66,7 @@ yellowTeam: "Het §eGele team"
 spleefRanking: "Spleef speler ranking"
 meltingBegings: "De sneeuw begint te smelten!"
 dontStayOnBlock: "Blijf niet op dezelfde block staan!"
+commandProhibited: "Dit commando is verboden door een beheerder."
 signColorTag:
   open:
     wait:

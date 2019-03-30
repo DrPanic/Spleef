@@ -65,6 +65,7 @@ yellowTeam: "El §eEquipo Amarillo"
 spleefRanking: "Ranking de jugadores de Spleef"
 meltingBegings: "Comienza el deshielo!"
 dontStayOnBlock: "No te quedes en la misma cuadra!"
+commandProhibited: "Este comando ha sido prohibido por un administrador."
 signColorTag:
   open:
     wait:

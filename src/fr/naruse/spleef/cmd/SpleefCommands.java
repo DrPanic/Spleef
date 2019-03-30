@@ -29,10 +29,16 @@ public class SpleefCommands implements CommandExecutor, TabExecutor {
         if(sender instanceof Player){
             Player p = (Player) sender;
             if(args.length == 0){
-                sendMessage(sender, "§3Hey! §6/§cspleef join <Spleef Name>");
+                if(!p.hasPermission("spleef.deny.join")){
+                    sendMessage(sender, "§3Hey! §6/§cspleef join <Spleef Name>");
+                }
                 sendMessage(sender, "§3Hey! §6/§cspleef leave");
-                sendMessage(sender, "§3Hey! §6/§cspleef wager <Open, Decline, Accept, Wager> <[Player]>");
-                sendMessage(sender, "§3Hey! §6/§cspleef duel <Invite, Decline, Accept> <[Player]>");
+                if(!p.hasPermission("spleef.deny.wager")){
+                    sendMessage(sender, "§3Hey! §6/§cspleef wager <Open, Decline, Accept, Wager> <[Player]>");
+                }
+                if(!p.hasPermission("spleef.deny.duel")){
+                    sendMessage(sender, "§3Hey! §6/§cspleef duel <Invite, Decline, Accept> <[Player]>");
+                }
             }
             if(args.length != 0){
                 if(args[0].equalsIgnoreCase("duel")){

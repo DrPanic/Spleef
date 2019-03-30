@@ -25,7 +25,6 @@ public class SpleefPlugin extends JavaPlugin {
     @Override
     public void onEnable(){
         super.onEnable();
-        Logs logs = new Logs();
         this.INSTANCE = this;
         this.worldEditPlugin = (WorldEditPlugin) Bukkit.getPluginManager().getPlugin("WorldEdit");
         this.otherPluginSupport = new OtherPluginSupport();
@@ -35,6 +34,7 @@ public class SpleefPlugin extends JavaPlugin {
         Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
             @Override
             public void run() {
+                Logs logs = new Logs();
                 spleefs = new Spleefs(INSTANCE);
                 wagers = new Wagers(INSTANCE);
                 duels = new Duels(INSTANCE);

@@ -66,6 +66,7 @@ yellowTeam: "The §eYellow team"
 spleefRanking: "Spleef player ranking"
 meltingBegings: "The melting begings!"
 dontStayOnBlock: "Don't stay on the same block!"
+commandProhibited: "This command has been prohibited by an administrator."
 signColorTag:
   open:
     wait:

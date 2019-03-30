@@ -26,9 +26,6 @@ public class Utils {
         if(a.getX() != b.getX()){
             return false;
         }
-        if(a.getY() != b.getY()){
-            return false;
-        }
         if(a.getZ() != b.getZ()){
             return false;
         }

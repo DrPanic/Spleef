@@ -19,7 +19,7 @@ pageNotFound: "Page introuvable."
 youAlreadyInGame: "Vous êtes déjà dans un Spleef."
 notEnoughPlayers:  "Il n'y a pas assez de joueur pour lancer la parie."
 gameStarts:  "La partie commence."
-winsTheGame:  "game ce Spleef!"
+winsTheGame:  "gagne ce Spleef!"
 inGame: "En jeu"
 fell:  "est tombé(e)."
 fullGame:  "Cette partie est pleine."
@@ -66,6 +66,7 @@ yellowTeam: "L'équipe §eJaune"
 spleefRanking: "Classement des joueurs Spleef"
 meltingBegings: "La fonte commence!"
 dontStayOnBlock: "Ne restez pas sur le même bloc!"
+commandProhibited: "Cette commande a été désactivée par un administrateur."
 signColorTag:
   open:
     wait:
